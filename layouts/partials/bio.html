@@ -1,5 +1,11 @@
 {{ $avatar_img := .Site.Params.author.avatar }}
 {{ $avatar_img_alt := .Site.Params.author.name }}
+
+{{/* If an alt description of the avatar is provided, use it */}}
+{{ if .Site.Params.author.altDescription }}
+  {{ $avatar_img_alt = .Site.Params.author.altDescription }}
+{{ end }}
+
 {{ $image := resources.Get $avatar_img }}
 <div class="author">
     {{ with $image }}
