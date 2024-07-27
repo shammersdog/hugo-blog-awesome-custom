@@ -211,6 +211,15 @@ url = "index.xml"
 
 If you are trying to add an icon that is not listed above, you can modify `layouts\partials\svgs\svgs.html` to include your icon (SVG). You are encouraged to submit your icon by creating a pull request, so that others can benefit.
 
+### Adding Fediverse Verification 
+
+You can add a Fediverse verification link to your site using the `hugo.toml` file. When populated, this will add the relevant `<link rel="me">` element to your pages.
+
+```toml
+[params]
+  fediVerifyUrl = "https://example.com/@yourname"
+```
+
 ### Enable go to top button
 
 To enable go to top button on blog posts, set `goToTop` to `true` in `hugo.toml` file.
