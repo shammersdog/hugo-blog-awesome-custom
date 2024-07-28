@@ -17,6 +17,17 @@
 <meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
 {{ end }}
+
+{{/* Use avatar as og image for site */}}
+{{ if .Site.Params.author.avatar }}
+{{ $image := resources.Get .Site.Params.author.avatar }}
+{{ with $image }}
+{{ $image := $image.Fill "1200x630 webp" }}
+<meta property="twitter:image" content="{{ $image.RelPermalink }}" />
+<meta property="og:image" content="{{ $image.RelPermalink }}" />
+{{ end }}
+{{ end }}
+
 <meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
 
 {{/*  Define empty variable description  */}}
