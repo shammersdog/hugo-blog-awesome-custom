@@ -1,6 +1,6 @@
 <head>
     {{- partial "meta/main.html" . }}
-    {{- hugo.Generator }}
+    {{ hugo.Generator }}
 
     {{/* Canonical link, RSS */}}
 
@@ -40,5 +40,10 @@
     {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
     {{ template "_internal/google_analytics.html" . }}
     {{- end -}}
+
+    {{- /* Fedi Verification */ -}}
+    {{ if .Site.Params.fediVerifyUrl }}
+    <link rel="me" href="{{ .Site.Params.fediVerifyUrl }}">
+    {{ end }}
 
 </head>
