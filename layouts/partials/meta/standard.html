@@ -2,11 +2,34 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+{{/* Easiest way to keep the site title from repeating on the home page */}}
+{{- if .IsHome -}}
+<title itemprop="name">{{ .Site.Title }}</title>
+<meta property="og:title" content="{{ .Site.Title }}" />
+<meta name="twitter:title" content="{{ .Site.Title }}" />
+<meta itemprop="name" content="{{ .Site.Title }}" />
+<meta name="application-name" content="{{ .Site.Title }}" />
+
+{{/* Use avatar as og image for home */}}
+{{ if .Site.Params.author.avatar }}
+{{ $image := resources.Get .Site.Params.author.avatar }}
+{{ with $image }}
+{{ $image := $image.Fill "1200x630 webp" }}
+<meta property="twitter:image" content="{{ $image.RelPermalink }}" />
+<meta property="og:image" content="{{ $image.RelPermalink }}" />
+{{ end }}
+{{ end }}
+
+{{- else -}}
 <title itemprop="name">{{ .Title }} | {{ .Site.Title }}</title>
+<meta name="application-name" content=" {{ .Site.Title }}" />
 <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
+{{ end }}
+
+
 <meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
 
 {{/*  Define empty variable description  */}}
