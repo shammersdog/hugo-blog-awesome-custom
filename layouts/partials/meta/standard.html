@@ -9,16 +9,8 @@
 <meta name="twitter:title" content="{{ .Site.Title }}" />
 <meta itemprop="name" content="{{ .Site.Title }}" />
 <meta name="application-name" content="{{ .Site.Title }}" />
-{{- else -}}
-<title itemprop="name">{{ .Title }} | {{ .Site.Title }}</title>
-<meta name="application-name" content=" {{ .Site.Title }}" />
-<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
-{{ end }}
 
-{{/* Use avatar as og image for site */}}
+{{/* Use avatar as og image for home */}}
 {{ if .Site.Params.author.avatar }}
 {{ $image := resources.Get .Site.Params.author.avatar }}
 {{ with $image }}
@@ -26,6 +18,15 @@
 <meta property="twitter:image" content="{{ $image.RelPermalink }}" />
 <meta property="og:image" content="{{ $image.RelPermalink }}" />
 {{ end }}
+{{ end }}
+
+{{- else -}}
+<title itemprop="name">{{ .Title }} | {{ .Site.Title }}</title>
+<meta name="application-name" content=" {{ .Site.Title }}" />
+<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
 {{ end }}
 
 <meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
